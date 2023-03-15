@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light -flex justify-content-center">
+
+    <div class="collapse navbar-collapse d-flex justify-content-center" id="mynavbar">
+  
+<%= form_tag(blogs_path, method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+   
+  </div>
+</nav>
+<div class="container mb-5 text-success">
+<h1>Blogs</h1>
+
+<table class="table">
+<%=  link_to "Add Your Blog" ,new_blog_path()%>
+<br>
+<thead class="table-dark">
+<tr>
+<th>Blog Name</th>
+<th>Content</th>
+<th>Author</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody class="">
+<%@blogs.each do |b|%>
+<tr>
+<td>
+<%= link_to b.name ,blog_path(b)%></td>
+<td>
+<%= b.content %></td>
+
+<td>
+<%= b.user.name %></td>
+<td>
+<%= link_to "Edit" , edit_blog_path(b),class:"btn btn-primary" ,method:"get"%>
+ <%= link_to "Delete", blog_path(b), class:"btn btn-danger" ,data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+
+</td>
+</tr>
+<%end%>
+
+
+</tbody>
+</div>
+</table>

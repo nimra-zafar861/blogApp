@@ -1,0 +1,19 @@
+<%=form_with model: blog do |b|%>
+<%=b.label :Blog_name %><br>
+<%=b.text_field :name ,placeholder:"Enter Blog Name"%><br>
+<div class="text-danger">
+<%blog.errors.full_messages_for(:name).each do |m|%>
+<p><%= m %></p>
+<%end%>
+</div>
+<%=b.label :Blog_content%><br>
+<%=b.text_field :content ,placeholder:"Enter Blog Detail"%><br>
+<br><br>
+<%=b.label :user_Id%><br>
+<%=b.select:user_id,options_for_select(User.all.map{ |user| [user.name, user.id]},
+ selected:blog.user_id),{prompt:"select Author"}%>
+
+<%=b.submit%>
+
+
+<%end%>

@@ -1,0 +1,22 @@
+
+
+<div class="container">
+<%=form_with model: user do |d|%>
+<%=d.label :User_Name%><br>
+<%=d.text_field :name%>
+<div class="text-danger">
+<%user.errors.full_messages_for(:name).each do |m|%>
+<p><%= m %></p>
+<%end%>
+</div>
+
+<%=d.label :Country%><br>
+<%=d.select:country ,options_for_select(User::U_COUNTRY,
+ selected:user.country),{prompt:"select empolyee"}%>
+
+<br>
+
+<br><br>
+<%=d.submit%>
+<%end%>
+</div>

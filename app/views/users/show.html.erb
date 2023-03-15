@@ -1,0 +1,16 @@
+
+<div class="container ">
+<h1 class="text-success" >User Information</h1><br><br>
+<h4 class="text-success"> User Name:</h4>
+<p> <%=@user.name%></p>
+<h4 class="text-success"> User Country</h4>
+<p> <%=@user.country%></p>
+<%
+=begin%>
+ <h4 class="text-success">Blogs</h4>
+<%=@user.blog.name%> 
+<%
+=end%>
+
+</div>
+

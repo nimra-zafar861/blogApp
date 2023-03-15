@@ -1,0 +1,56 @@
+<h2>Users Record</h2>
+<br><br>
+<%= flash[:alert]%>
+<div class="container"> 
+<%= link_to "Add document",new_user_path %>
+<table class="table table-bordered">
+<thead class="table-primary text-center">
+<tr>
+<th>
+User Name
+</th>
+<th>
+User Country
+</th><th>
+Blog name
+</th>
+
+<th>
+Actions
+</th>
+</tr>
+</thead>
+<tbody class="text-center">
+<% @user.each do |d|%>
+<tr>
+<td>
+<%= link_to d.name ,user_path(d) %>
+</td>
+<td>
+<%= d.country%>
+</td>
+
+ <td>
+<% d.blogs.each do |b|%>
+<%=b.name%>
+<%end%>
+</td> 
+
+<td>
+<%= link_to "Edit" , edit_user_path(d),class:"btn btn-primary" ,method:"get"%>
+ <%= link_to "Delete", user_path(d), class:"btn btn-danger" ,data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+<%
+=begin%>
+ <%= button_to "Delete" ,user_path(d) ,method:"delete", class:"btn btn-danger",data:{confirm:"Are you sure to delete blog?"} %> 
+<%
+=end%>
+</td>
+</td>
+</tr><%end%>
+
+</tbody>
+</table>
+</div>
