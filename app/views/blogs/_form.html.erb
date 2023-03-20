@@ -12,7 +12,6 @@
 <%=b.label :user_Id%><br>
 <%=b.select:user_id,options_for_select(User.all.map{ |user| [user.name, user.id]},
  selected:blog.user_id),{prompt:"select Author"}%>
-
 <%=b.submit%>
 
 

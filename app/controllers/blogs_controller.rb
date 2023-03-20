@@ -5,11 +5,14 @@ class BlogsController < ApplicationController
   end
   
   def index
-    if Blog.where("name LIKE ?", "%#{params[:q]}%").present?
-      @blogs=Blog.where("name LIKE ?", "%#{params[:q]}%")
+    if params[:q].present?
+     @blogs=Blog.where("name = ?",params[:q])
     else
+    
       @blogs=Blog.all
+    
     end
+  
   end
  def users
   @blog=Blog.all
@@ -54,6 +57,8 @@ private
 def blog_params
   params.require(:blog).permit(:name,:content,:user_id)
 end
-
-
+rescue ActivRecord::RecordNotFound => error
+  redirect_to blogs_path , notice:error
 end
+
+

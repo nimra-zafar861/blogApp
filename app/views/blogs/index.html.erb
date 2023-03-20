@@ -6,13 +6,17 @@
   <%= label_tag(:q, "Search for:") %>
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
+  
 <% end %>
-   
   </div>
 </nav>
+
 <div class="container mb-5 text-success">
 <h1>Blogs</h1>
 
+
+
+<%if @blogs.present?%>
 <table class="table">
 <%=  link_to "Add Your Blog" ,new_blog_path()%>
 <br>
@@ -35,7 +39,7 @@
 <td>
 <%= b.user.name %></td>
 <td>
-<%= link_to "Edit" , edit_blog_path(b),class:"btn btn-primary" ,method:"get"%>
+<%= link_to "Edit" , edit_blog_path(b),class:"btn btn-primary" ,method:"get" ,data:{turbo_message: "Are you sure?"}%>
  <%= link_to "Delete", blog_path(b), class:"btn btn-danger" ,data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
@@ -44,8 +48,12 @@
 </td>
 </tr>
 <%end%>
-
-
 </tbody>
 </div>
 </table>
+
+<%else%>
+<h2>No record Found </h2>
+<%end%>
+
+
